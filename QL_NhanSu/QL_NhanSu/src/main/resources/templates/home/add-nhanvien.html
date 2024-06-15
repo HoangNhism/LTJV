@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Them Nhan Vien</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <h1>Them Nhan Vien Moi</h1>
+    <form th:action="@{/home/add}" th:object="${nhanviens}" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="ma_NV" class="form-label">Ma Nhan Vien:</label>
+            <input type="text" th:field="*{ma_NV}" class="form-control" id="ma_NV"
+                   required>
+        </div>
+        <div class="mb-3">
+            <label for="Ten_NV" class="form-label">Ten Nhan Vien:</label>
+            <input type="text" th:field="*{Ten_NV}" class="form-control" id="Ten_NV"
+                   required>
+        </div>
+        <div class="mb-3">
+            <label for="MaPhong" class="form-label">Phong Ban:</label>
+            <select th:field="*{MaPhong}" class="form-control" id="MaPhong">
+                <option th:each="MaPhong : ${phongbans}"
+                        th:value="${MaPhong.MaPhong}" th:text="${MaPhong.TenPhong}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="Phai" class="form-label">Phai:</label>
+            <textarea th:field="*{Phai}" class="form-control" id="Phai" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="NoiSinh" class="form-label">NoiSinh:</label>
+            <textarea th:field="*{NoiSinh}" class="form-control" id="NoiSinh" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="Luong" class="form-label">Luong:</label>
+            <textarea th:field="*{Luong}" class="form-control" id="Luong" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Them Nhan Vien</button>
+        <a th:href="@{/home}" class="btn btn-link">Cancel</a>
+    </form>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
